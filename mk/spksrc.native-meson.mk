@@ -7,23 +7,10 @@
 # Common makefiles
 include ../../mk/spksrc.common.mk
 include ../../mk/spksrc.directories.mk
+include ../../mk/spksrc.filenames.mk
 
 # Force build in native tool directrory, not cross directory.
 WORK_DIR := $(CURDIR)/work-native
-
-# Package dependend
-URLS          = $(PKG_DIST_SITE)/$(PKG_DIST_NAME)
-NAME          = $(PKG_NAME)
-COOKIE_PREFIX = $(PKG_NAME)-
-ifneq ($(PKG_DIST_FILE),)
-LOCAL_FILE    = $(PKG_DIST_FILE)
-else
-LOCAL_FILE    = $(PKG_DIST_NAME)
-endif
-DIST_FILE     = $(DISTRIB_DIR)/$(LOCAL_FILE)
-DIST_EXT      = $(PKG_EXT)
-
-#####
 
 # configure using meson
 ifeq ($(strip $(CONFIGURE_TARGET)),)

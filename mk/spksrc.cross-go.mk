@@ -13,23 +13,7 @@
 # Common makefiles
 include ../../mk/spksrc.common.mk
 include ../../mk/spksrc.directories.mk
-
-# Configure the included makefiles
-URLS          = $(PKG_DIST_SITE)/$(PKG_DIST_NAME)
-NAME          = $(PKG_NAME)
-COOKIE_PREFIX = $(PKG_NAME)-
-ifneq ($(PKG_DIST_FILE),)
-LOCAL_FILE    = $(PKG_DIST_FILE)
-else
-LOCAL_FILE    = $(PKG_DIST_NAME)
-endif
-DIST_FILE     = $(DISTRIB_DIR)/$(LOCAL_FILE)
-DIST_EXT      = $(PKG_EXT)
-
-ifneq ($(ARCH),)
-ARCH_SUFFIX = -$(ARCH)-$(TCVERSION)
-TC = syno$(ARCH_SUFFIX)
-endif
+include ../../mk/spksrc.filenames.mk
 
 ##### golang specific configurations
 include ../../mk/spksrc.cross-go-env.mk

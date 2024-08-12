@@ -8,24 +8,10 @@
 # Common makefiles
 include ../../mk/spksrc.common.mk
 include ../../mk/spksrc.directories.mk
+include ../../mk/spksrc.filenames.mk
 
 # Force build in native tool directory, not cross directory.
 WORK_DIR := $(CURDIR)/work-native
-
-# Package dependent
-URLS          = $(PKG_DIST_SITE)/$(PKG_DIST_NAME)
-NAME          = $(PKG_NAME)
-COOKIE_PREFIX = $(PKG_NAME)-
-ifneq ($(PKG_DIST_FILE),)
-LOCAL_FILE    = $(PKG_DIST_FILE)
-else
-LOCAL_FILE    = $(PKG_DIST_NAME)
-endif
-DIST_FILE     = $(DISTRIB_DIR)/$(LOCAL_FILE)
-DIST_EXT      = $(PKG_EXT)
-
-
-#####
 
 ifneq ($(REQUIRE_KERNEL),)
   @$(error native-install cannot be used when REQUIRE_KERNEL is set)
