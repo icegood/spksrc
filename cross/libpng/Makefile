@@ -1,9 +1,11 @@
 PKG_NAME = libpng
-PKG_VERS = 1.6.43
-PKG_EXT = tar.xz
-PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://download.sourceforge.net/libpng
-PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
+PKG_VERS = icegood_master
+PKG_EXT = tar.gz
+PKG_GIT_HASH = 3463962f9158873d23de9abc178ad608a5e1a165
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_SITE = https://github.com/icegood/libpng/archive
+PKG_DIST_FILE = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
+PKG_DIR = $(PKG_NAME)-$(PKG_GIT_HASH)
 
 DEPENDS = cross/zlib
 
