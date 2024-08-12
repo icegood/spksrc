@@ -8,6 +8,9 @@ TC_DIST_SITE_PATH = Marvell%20Armada%20370%20Linux%203.2.101
 
 TC_TARGET = arm-unknown-linux-gnueabi
 TC_SYSROOT = $(TC_TARGET)/sysroot
-TC_EXTRA_CFLAGS = -mhard-float -mfpu=vfpv3-d16
+TC_EXTRA_CFLAGS = -mhard-float -mfpu=vfpv3-d16 -march=armv7-a+mp+sec+fp
+# we would like to have -mthumb as well but it is not possible, leads to crash.
+# something wrong in toolchain that prevent -mthumb to work 
+# (align of instruction pointer durring rescheduling?)
 
 include ../../mk/spksrc.tc.mk

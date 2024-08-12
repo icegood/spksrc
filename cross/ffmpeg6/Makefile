@@ -1,8 +1,11 @@
-PKG_NAME = ffmpeg
-PKG_VERS = 6.0.1
-PKG_EXT = tar.bz2
-PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://www.ffmpeg.org/releases
+PKG_NAME = FFmpeg
+PKG_VERS = 100.100.0
+PKG_EXT = tar.gz
+PKG_GIT_HASH = 3144428af45bbcd7f1e07d0acabb9cd40255a46c
+PKG_DIST_SITE = https://github.com/icegood/ffmpeg/archive
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+PKG_EXTRACT_FILE = $(PKG_NAME)-$(PKG_GIT_HASH)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 HOMEPAGE = https://www.ffmpeg.org/
@@ -31,33 +34,31 @@ CONFIGURE_ARGS += --extra-cflags=-DSYNO_VIDEOSTATION
 
 # Compiler workaround to enable DTS-HD MA stream decoding
 CONFIGURE_ARGS += --extra-cflags=-fno-if-conversion
-# Synology default optimization
-CONFIGURE_ARGS += --extra-cflags=-O3
 # Remove some of the noise while compiling
 CONFIGURE_ARGS += --extra-cflags=-Wno-deprecated-declarations
 
 include ../../mk/spksrc.common.mk
 
-OPTIONAL_DEPENDS  = native/nasm
-OPTIONAL_DEPENDS += cross/chromaprint-fftw
-OPTIONAL_DEPENDS += cross/dav1d
-OPTIONAL_DEPENDS += cross/frei0r
-OPTIONAL_DEPENDS += cross/libass
-OPTIONAL_DEPENDS += cross/libaom
-OPTIONAL_DEPENDS += cross/libvpx
-OPTIONAL_DEPENDS += cross/libzimg
-OPTIONAL_DEPENDS += cross/openh264
-OPTIONAL_DEPENDS += cross/svt-av1
+DEPENDS  = native/nasm
+DEPENDS += cross/chromaprint-fftw
+DEPENDS += cross/dav1d
+DEPENDS += cross/frei0r
+DEPENDS += cross/libass
+DEPENDS += cross/libaom
+DEPENDS += cross/libvpx
+DEPENDS += cross/libzimg
+DEPENDS += cross/openh264
+DEPENDS += cross/svt-av1
 OPTIONAL_DEPENDS += cross/svt-hevc
-OPTIONAL_DEPENDS += cross/libva
-OPTIONAL_DEPENDS += cross/libva-utils
+DEPENDS += cross/libva
+DEPENDS += cross/libva-utils
 OPTIONAL_DEPENDS += cross/intel-vaapi-driver
 OPTIONAL_DEPENDS += cross/intel-media-driver
 OPTIONAL_DEPENDS += cross/intel-mediasdk
-OPTIONAL_DEPENDS += cross/twolame
-OPTIONAL_DEPENDS += cross/x264
-OPTIONAL_DEPENDS += cross/x265
-OPTIONAL_DEPENDS += cross/shine
+DEPENDS += cross/twolame
+DEPENDS += cross/x264
+DEPENDS += cross/x265
+DEPENDS += cross/shine
 
 # Define x86asm
 ifeq ($(findstring $(ARCH),$(i686_ARCHS) $(x64_ARCHS)),$(ARCH))
@@ -94,8 +95,8 @@ CONFIGURE_ARGS += --enable-libopenjpeg
 DEPENDS += cross/lame
 CONFIGURE_ARGS += --enable-libmp3lame
 
-DEPENDS += cross/libbluray
-CONFIGURE_ARGS += --enable-libbluray
+#DEPENDS += cross/libbluray
+CONFIGURE_ARGS += --disable-libbluray
 
 DEPENDS += cross/speex
 CONFIGURE_ARGS += --enable-libspeex
@@ -104,8 +105,8 @@ DEPENDS += cross/flac
 DEPENDS += cross/libtheora
 CONFIGURE_ARGS += --enable-libtheora
 
-DEPENDS += cross/libcaca
-CONFIGURE_ARGS += --enable-libcaca
+#DEPENDS += cross/libcaca
+CONFIGURE_ARGS += --disable-libcaca
 
 DEPENDS += cross/libdc1394
 CONFIGURE_ARGS += --enable-libdc1394
@@ -136,8 +137,8 @@ CONFIGURE_ARGS += --enable-libsoxr
 DEPENDS += cross/opencore-amr
 CONFIGURE_ARGS += --enable-libopencore-amrnb --enable-libopencore-amrwb
 
-DEPENDS += cross/librabbitmq
-CONFIGURE_ARGS += --enable-librabbitmq
+#DEPENDS += cross/librabbitmq
+CONFIGURE_ARGS += --disable-librabbitmq
 
 DEPENDS += cross/twolame
 CONFIGURE_ARGS += --enable-libtwolame
@@ -216,11 +217,13 @@ CONFIGURE_ARGS += --arch=arm --disable-neon
 endif
 
 ifeq ($(findstring $(ARCH),$(ARMv7_ARCHS) $(ARMv7L_ARCHS)),$(ARCH))
-CONFIGURE_ARGS += --arch=arm --enable-neon --enable-thumb --disable-armv6 --disable-armv6t2 --disable-vfp --disable-armv5te
+CONFIGURE_ARGS += --arch=arm --disable-armv6 --disable-armv6t2 --disable-vfp --disable-armv5te
 ifeq ($(findstring alpine,$(ARCH)),alpine)
 CONFIGURE_ARGS += --extra-cflags=-DSYNO_ALPINE_NEON
 endif
 endif
+
+
 
 ifeq ($(findstring $(ARCH),$(ARMv8_ARCHS)),$(ARCH))
 CONFIGURE_ARGS += --arch=arm64 --enable-neon --enable-thumb

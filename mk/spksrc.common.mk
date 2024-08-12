@@ -5,7 +5,7 @@
 # Set basedir in case called from spkrc/ or from normal sub-dir
 # Note that github-action uses workspace/ in place of spksrc/
 ifeq ($(BASEDIR),)
-ifeq ($(filter spksrc workspace,$(shell basename $(CURDIR))),)
+ifeq ($(filter spksrc workspace container_spksrc,$(shell basename $(CURDIR))),)
 BASEDIR = ../../
 endif
 endif

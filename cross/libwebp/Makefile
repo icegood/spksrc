@@ -1,9 +1,11 @@
 PKG_NAME = libwebp
-PKG_VERS = 1.4.0
+PKG_VERS = ice_master
 PKG_EXT = tar.gz
-PKG_DIST_NAME = v$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://github.com/webmproject/libwebp/archive
-PKG_DIST_FILE = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
+PKG_GIT_HASH = a488982f64832f94a71cc2cc03dbad8d7443ebc7
+PKG_DIST_SITE = https://github.com/icegood/libwebp/archive
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+PKG_EXTRACT_FILE = $(PKG_NAME)-$(PKG_GIT_HASH)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 DEPENDS = cross/xz cross/libtiff cross/libjpeg cross/libpng cross/giflib

@@ -52,6 +52,8 @@ REAL_CONFIGURE_ARGS += $(CONFIGURE_ARGS)
 
 configure_msg:
 	@$(MSG) "Configuring for $(NAME)"
+	@$(MSG) "GNU_CONFIGURE = $(GNU_CONFIGURE)"
+	@$(MSG) "GCC_DEBUG_INFO = $(GCC_DEBUG_INFO)"
 	@$(MSG)     - Configure ARGS: $(REAL_CONFIGURE_ARGS)
 	@$(MSG)     - Install prefix: $(INSTALL_PREFIX)
 

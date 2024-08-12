@@ -56,8 +56,11 @@ pre_extract_target: extract_msg
 extract_target: $(PRE_EXTRACT_TARGET)
 	@mkdir -p $(EXTRACT_PATH)
 	$(EXTRACT_CMD)
+ifneq ($(strip $(PKG_EXTRACT_FILE)),)
+	mv $(EXTRACT_PATH)/$(PKG_EXTRACT_FILE) $(EXTRACT_PATH)/$(PKG_DIR)
+endif
 
-post_extract_target: $(EXTRACT_TARGET) 
+post_extract_target: $(EXTRACT_TARGET)
 
 ifeq ($(wildcard $(EXTRACT_COOKIE)),)
 extract: $(EXTRACT_COOKIE)

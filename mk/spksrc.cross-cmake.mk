@@ -14,7 +14,6 @@ include ../../mk/spksrc.directories.mk
 # cmake specific configurations
 include ../../mk/spksrc.cross-cmake-env.mk
 include ../../mk/spksrc.filenames.mk
-
 # configure using cmake
 ifeq ($(strip $(CONFIGURE_TARGET)),)
 CONFIGURE_TARGET = cmake_configure_target

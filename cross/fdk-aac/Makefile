@@ -19,4 +19,4 @@ include ../../mk/spksrc.cross-cc.mk
 
 .PHONY: fdk-aac_configure
 fdk-aac_configure:
-	$(RUN) ./autogen.sh
+	@$(RUN) ./autogen.sh  > spk_configure.log 2>&1

@@ -1,8 +1,12 @@
 PKG_NAME = dav1d
-PKG_VERS = 1.4.2
-PKG_EXT = tar.xz
-PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://download.videolan.org/pub/videolan/dav1d/$(PKG_VERS)
+PKG_VERS = 1.4.2-ice-master
+PKG_EXT = tar.gz
+PKG_DIST_SITE = https://github.com/icegood/dav1d/archive
+PKG_GIT_HASH = 5ef6b241f05a2b9058b58136da4b25842aefba96
+
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+PKG_EXTRACT_FILE = $(PKG_NAME)-$(PKG_GIT_HASH)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 DEPENDS =

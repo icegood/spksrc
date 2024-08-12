@@ -1,10 +1,13 @@
 PKG_NAME = zimg
-PKG_VERS = 3.0.5
+PKG_VERS = ice_master_debug
 PKG_EXT = tar.gz
-PKG_DIST_NAME = release-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://github.com/sekrit-twc/zimg/archive/refs/tags
-PKG_DIST_FILE = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIR = $(PKG_NAME)-release-$(PKG_VERS)
+PKG_GIT_HASH = 81fda9f6820801d04e2dbc364f19347a71581553
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_SITE = https://github.com/icegood/zimg/archive
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+
+PKG_EXTRACT_FILE = $(PKG_NAME)-$(PKG_GIT_HASH)
+PKG_DIR = $(PKG_NAME)-debug-$(PKG_VERS)
 
 DEPENDS =
 

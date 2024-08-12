@@ -1,8 +1,11 @@
 PKG_NAME = libvorbis
 PKG_VERS = 1.3.7
-PKG_EXT = tar.xz
-PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://ftp.osuosl.org/pub/xiph/releases/vorbis
+PKG_EXT = tar.gz
+PKG_GIT_HASH = 84c023699cdf023a32fa4ded32019f194afcdad0
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_SITE = https://github.com/icegood/vorbis/archive/
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+PKG_EXTRACT_FILE = vorbis-$(PKG_GIT_HASH)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 DEPENDS = cross/libogg
@@ -18,4 +21,10 @@ ifeq ($(strip $(GCC_DEBUG_INFO)),1)
   COMPILE_MAKE_OPTIONS = debug
 endif
 
+PRE_CONFIGURE_TARGET = libvorbis_pre_configure
+
 include ../../mk/spksrc.cross-cc.mk
+
+.PHONY: libvorbis_pre_configure
+libvorbis_pre_configure:
+	@$(RUN) ; ./autogen.sh

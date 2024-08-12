@@ -67,6 +67,7 @@ pre_download_target: download_msg
 
 download_target: $(PRE_DOWNLOAD_TARGET)
 	@mkdir -p $(DISTRIB_DIR)
+	@echo URLS for pkg=$(PKG_NAME): $(URLS)
 	@cd $(DISTRIB_DIR) &&  for url in $(URLS) ; \
 	do \
 	  case "$(PKG_DOWNLOAD_METHOD)" in \

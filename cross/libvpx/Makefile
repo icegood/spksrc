@@ -75,4 +75,4 @@ endif
 
 .PHONY: libvpx_install
 libvpx_install:
-	@$(RUN) $(MAKE) install DESTDIR=$(INSTALL_DIR)
+	@$(RUN) $(MAKE) install DESTDIR=$(INSTALL_DIR) > spk_install.log 2>&1

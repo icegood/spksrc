@@ -1,11 +1,14 @@
 PKG_NAME = libcaca
-PKG_VERS = 0.99.beta19
+PKG_VERS = 0.99.ice
 # Require autoconf >= 2.71
 #PKG_VERS = 0.99.beta20
 PKG_EXT = tar.gz
-PKG_DIST_NAME = v$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_FILE = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = https://github.com/cacalabs/libcaca/archive
+PKG_DIST_SITE = https://github.com/icegood/libcaca/archive
+PKG_GIT_HASH = bccb83e113d0e0b62bbd0ff2759670b84c2400d5
+
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+PKG_EXTRACT_FILE = $(PKG_NAME)-$(PKG_GIT_HASH)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 DEPENDS = cross/imlib2

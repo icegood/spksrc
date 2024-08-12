@@ -1,8 +1,14 @@
 {
-    "files.watcherExclude": {
-        "**/distrib/**": true,
-        "**/packages/**": true,
-        "**/work-*/**": true,
-        "**/work/**": true
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "*.json": "jsonc",
+        "cabac.h": "c",
+        "aacenc.h": "c",
+        "aactab.h": "c",
+        "aacenctab.h": "c",
+        "ffmath.h": "c",
+        "attributes.h": "c",
+        "libm.h": "c",
+        "stdint.h": "c"
     }
 }

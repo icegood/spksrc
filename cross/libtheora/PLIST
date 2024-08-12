@@ -1,9 +1,9 @@
 lnk:lib/libtheoradec.so
 lnk:lib/libtheoradec.so.1
-lib:lib/libtheoradec.so.1.1.4
+lib:lib/libtheoradec.so.1.1.5
 lnk:lib/libtheoraenc.so
 lnk:lib/libtheoraenc.so.1
-lib:lib/libtheoraenc.so.1.1.2
+lib:lib/libtheoraenc.so.1.2.0
 lnk:lib/libtheora.so
 lnk:lib/libtheora.so.0
-lib:lib/libtheora.so.0.3.10
+lib:lib/libtheora.so.0.4.0

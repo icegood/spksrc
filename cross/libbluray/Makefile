@@ -1,8 +1,11 @@
 PKG_NAME = libbluray
-PKG_VERS = 1.3.4
-PKG_EXT = tar.bz2
-PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
+PKG_VERS = 1.3.4-ice
+PKG_EXT = tar.gz
+PKG_GIT_HASH = 3144428af45bbcd7f1e07d0acabb9cd40255a46c
 PKG_DIST_SITE = http://ftp.videolan.org/pub/videolan/libbluray/$(PKG_VERS)
+PKG_DIST_NAME = $(PKG_GIT_HASH).$(PKG_EXT)
+PKG_DIST_FILE = $(PKG_NAME)-git$(PKG_GIT_HASH).$(PKG_EXT)
+PKG_EXTRACT_FILE = $(PKG_NAME)-$(PKG_GIT_HASH)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 DEPENDS = cross/libxml2 cross/freetype cross/fontconfig

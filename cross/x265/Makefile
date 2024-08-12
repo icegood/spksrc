@@ -72,15 +72,15 @@ endif
 .PHONY: x265_pre_configure
 x265_pre_configure: $(CMAKE_TOOLCHAIN_PKG)
 	@$(MSG) Configure 12BIT libraries
-	$(RUN) cmake -S $(WORK_DIR)/$(PKG_DIR)/source -B $(CMAKE_BUILD_12B) $(CMAKE_ARGS) $(CMAKE_ARGS_BITLIB) -DMAIN12=ON -G Ninja
+	@$(RUN) cmake -S $(WORK_DIR)/$(PKG_DIR)/source -B $(CMAKE_BUILD_12B) $(CMAKE_ARGS) $(CMAKE_ARGS_BITLIB) -DMAIN12=ON -G Ninja > spk_pre_configure.log 2>&1
 	@$(MSG) Configure 10BIT libraries
-	$(RUN) cmake -S $(WORK_DIR)/$(PKG_DIR)/source -B $(CMAKE_BUILD_10B) $(CMAKE_ARGS) $(CMAKE_ARGS_BITLIB) -G Ninja
+	@$(RUN) cmake -S $(WORK_DIR)/$(PKG_DIR)/source -B $(CMAKE_BUILD_10B) $(CMAKE_ARGS) $(CMAKE_ARGS_BITLIB) -G Ninja >> spk_pre_configure.log 2>&1
 
 .PHONY: x265_pre_compile
 x265_pre_compile:
 	@$(MSG) Build 12BIT libraries
-	@$(RUN) ninja -C $(CMAKE_BUILD_12B)
+	@$(RUN) ninja -C $(CMAKE_BUILD_12B) > spk_pre_compile.log 2>&1
 	@$(MSG) Build 10BIT libraries
-	@$(RUN) ninja -C $(CMAKE_BUILD_10B)
+	@$(RUN) ninja -C $(CMAKE_BUILD_10B) >> spk_pre_compile.log 2>&1
 	@$(RUN) ln -sf $(CMAKE_BUILD_12B)/libx265.a $(CMAKE_BUILD_DIR)/libx265_main12.a
 	@$(RUN) ln -sf $(CMAKE_BUILD_10B)/libx265.a $(CMAKE_BUILD_DIR)/libx265_main10.a

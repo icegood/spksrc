@@ -42,4 +42,4 @@ endif
 glib_pre_configure: 
 	# force autogen to first use internal pcre instead of provided to prevent
 	# build failure.  Subsequent default configure will superseed this afterwards
-	$(RUN) ./autogen.sh --with-pcre $(CONFIGURE_ARGS)
+	@$(RUN) ./autogen.sh --with-pcre $(CONFIGURE_ARGS) > spk_pre_configure.log 2>&1

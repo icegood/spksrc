@@ -50,4 +50,4 @@ endif
 
 .PHONY: openssl_configure
 openssl_configure:
-	$(RUN) ./Configure --openssldir=$(OPENSSL_DATA_DIR) --prefix=$(INSTALL_PREFIX) $(OPENSSL_ARCH) zlib-dynamic shared threads
+	@$(RUN) ./Configure --openssldir=$(OPENSSL_DATA_DIR) --prefix=$(INSTALL_PREFIX) $(OPENSSL_ARCH) zlib-dynamic shared threads  > spk_configure.log 2>&1
