@@ -128,8 +128,8 @@ cmake_configure_target: $(CMAKE_TOOLCHAIN_PKG)
 	@$(MSG)    - Path DESTDIR = $(CMAKE_DESTDIR)
 	@$(MSG)    - Path BUILD_DIR = $(CMAKE_BUILD_DIR)
 	@$(MSG)    - Path CMAKE_SOURCE_DIR = $(CMAKE_SOURCE_DIR)
-	$(RUN) rm -rf CMakeCache.txt CMakeFiles
-	$(RUN) cmake -S $(CMAKE_SOURCE_DIR) -B $(CMAKE_BUILD_DIR) $(CMAKE_ARGS) $(ADDITIONAL_CMAKE_ARGS) $(CMAKE_DIR)
+	@$(RUN) rm -rf CMakeCache.txt CMakeFiles
+	@$(RUN) cmake -S $(CMAKE_SOURCE_DIR) -B $(CMAKE_BUILD_DIR) $(CMAKE_ARGS) $(ADDITIONAL_CMAKE_ARGS) $(CMAKE_DIR) > spk_configure.log 2>&1
 
 .PHONY: cmake_compile_target
 
@@ -137,7 +137,7 @@ cmake_configure_target: $(CMAKE_TOOLCHAIN_PKG)
 cmake_compile_target:
 	@$(MSG) - CMake compile
 	@$(MSG) $$(date +%Y%m%d-%H%M%S) MAKELEVEL: $(MAKELEVEL), PARALLEL_MAKE: $(PARALLEL_MAKE), ARCH: $(ARCH)-$(TCVERSION), NAME: $(NAME) >> $(PSTAT_LOG)
-	$(RUN) cmake --build $(CMAKE_BUILD_DIR) -j $(NCPUS)
+	@$(RUN) cmake --build $(CMAKE_BUILD_DIR) -j $(NCPUS) > spk_compile.log 2>&1
 
 .PHONY: cmake_install_target
 
@@ -147,7 +147,7 @@ cmake_install_target:
 ifeq ($(strip $(CMAKE_USE_DESTDIR)),0)
 	$(RUN) cmake --install $(CMAKE_BUILD_DIR)
 else
-	$(RUN) DESTDIR=$(CMAKE_DESTDIR) cmake --install $(CMAKE_BUILD_DIR)
+	@$(RUN) DESTDIR=$(CMAKE_DESTDIR) cmake --install $(CMAKE_BUILD_DIR) > spk_install.log 2>&1
 endif
 
 

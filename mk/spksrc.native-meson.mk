@@ -73,6 +73,6 @@ meson_configure_target:
 	@$(MSG)    - Build path = $(WORK_DIR)/$(PKG_DIR)/$(MESON_BUILD_DIR)
 	@$(MSG)    - Configure ARGS = $(CONFIGURE_ARGS)
 	@$(MSG)    - Install prefix = $(INSTALL_PREFIX)
-	cd $(WORK_DIR)/$(PKG_DIR) && env $(ENV) meson $(MESON_BUILD_DIR) -Dprefix=$(INSTALL_PREFIX) $(CONFIGURE_ARGS)
+	@cd $(WORK_DIR)/$(PKG_DIR) && env $(ENV) meson $(MESON_BUILD_DIR) -Dprefix=$(INSTALL_PREFIX) $(CONFIGURE_ARGS) > spk_configure.log 2>&1
 
 ###

@@ -30,6 +30,7 @@ endif
 .PHONY: $(PRE_COMPILE_TARGET) $(COMPILE_TARGET) $(POST_COMPILE_TARGET)
 
 compile_msg:
+	@$(RUN) > spk_compile_environment
 	@$(MSG) "Compiling for $(NAME)"
 ifeq ($(filter cross spk,$(shell basename $(dir $(abspath $(CURDIR))))),)
 	@$(MSG) $$(date +%Y%m%d-%H%M%S) MAKELEVEL: $(MAKELEVEL), PARALLEL_MAKE: $(PARALLEL_MAKE), ARCH: $(shell basename $(CURDIR)), NAME: $(NAME) >> $(PSTAT_LOG)
@@ -41,9 +42,9 @@ pre_compile_target: compile_msg
 
 compile_target:  $(PRE_COMPILE_TARGET)
 ifeq ($(filter $(NCPUS),0 1),)
-	@$(RUN) $(MAKE) -j$(NCPUS) $(COMPILE_MAKE_OPTIONS)
+	@$(RUN) $(MAKE) V=1 -j$(NCPUS) $(COMPILE_MAKE_OPTIONS) > spk_compile.log 2>&1
 else
-	@$(RUN) $(MAKE) $(COMPILE_MAKE_OPTIONS)
+	@$(RUN) $(MAKE) V=1 $(COMPILE_MAKE_OPTIONS) > spk_compile.log 2>&1
 endif
 
 

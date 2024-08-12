@@ -16,7 +16,6 @@ UNSUPPORTED_ARCHS = $(ARMv5_ARCHS) $(OLD_PPC_ARCHS)
 CONFIGURE_ARGS += -Denable_tests=false
 CONFIGURE_ARGS += -Denable_examples=false
 CONFIGURE_ARGS += -Denable_docs=false
-ADDITIONAL_CFLAGS = -O
 
 include ../../mk/spksrc.archs.mk
 
